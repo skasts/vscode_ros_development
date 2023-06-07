@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "ostream": "cpp"
+    },
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/skasts/carla/PythonAPI/carla/dist/carla-0.9.14-py3.8-linux-x86_64.egg"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/skasts/carla/PythonAPI/carla/dist/carla-0.9.14-py3.8-linux-x86_64.egg"
+    ]
+}

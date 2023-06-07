@@ -1,0 +1,58 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        // Creating a build command for VS code that will run catkin build and then remove the compile_commands.json file
+		{
+			"type": "shell",
+			"command": "catkin build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=1",  // <- ADD OTHER CMAKE DIRECTIVES HERE
+			"problemMatcher": [
+				"$catkin-gcc"
+			],
+			"label": "catkin_build"
+		},
+        {
+            "type": "shell",
+            "command": "rm ${workspaceFolder}/compile_commands.json",
+            "problemMatcher": [],
+            "label": "catkin_build_remove_compile_commands",
+            "dependsOn": [
+                "catkin_build"
+            ]
+        },
+		{
+			"command": "${workspaceFolder}/.vscode/merge_compile_commands.sh",
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"label": "catkin: build",
+			"problemMatcher": [],
+			"dependsOn": [
+				"catkin_build_remove_compile_commands",
+			]
+		},
+        // Creating a clean command for VS code that will run catkin clean and then remove the compile_commands.json file
+        {
+			"type": "catkin",
+			"args": [
+				"clean",
+				"--yes"
+			],
+			"problemMatcher": [
+				"$catkin-gcc"
+			],
+			"label": "catkin_clean"
+		},
+		{
+			"command": "rm ${workspaceFolder}/compile_commands.json",
+			"type": "shell",
+			"problemMatcher": [],
+			"group": "build",
+			"label": "catkin: clean",
+			"dependsOn": [
+				"catkin_clean"
+			]
+		}
+  ]
+}
