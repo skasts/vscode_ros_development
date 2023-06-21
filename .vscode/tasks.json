@@ -1,24 +1,27 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-        // Creating a build command for VS code that will run catkin build and then remove the compile_commands.json file
+		// Creating a build command for VS code that will run catkin build and then remove the compile_commands.json file
 		{
 			"type": "shell",
-			"command": "catkin build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=1",  // <- ADD OTHER CMAKE DIRECTIVES HERE
+			"command": "catkin build --cmake-args -DCMAKE_BUILD_TYPE=debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_STANDARD=17",  // <- add other args here
 			"problemMatcher": [
 				"$catkin-gcc"
 			],
 			"label": "catkin_build"
 		},
-        {
-            "type": "shell",
-            "command": "rm ${workspaceFolder}/compile_commands.json",
-            "problemMatcher": [],
-            "label": "catkin_build_remove_compile_commands",
-            "dependsOn": [
-                "catkin_build"
-            ]
-        },
+		// Automatically source devel/setup.bash after building
+		{
+			"type": "shell",
+			"command": "source ${workspaceFolder}/devel/setup.bash",
+			"problemMatcher": [],
+			"group": "build",
+			"label": "source_setup",
+			"dependsOn": [
+				"catkin_build",
+			]
+		},
+		// Merge the compile_commands.json files from all packages into one file
 		{
 			"command": "${workspaceFolder}/.vscode/merge_compile_commands.sh",
 			"type": "shell",
@@ -29,30 +32,14 @@
 			"label": "catkin: build",
 			"problemMatcher": [],
 			"dependsOn": [
-				"catkin_build_remove_compile_commands",
+				"source_setup",
 			]
 		},
-        // Creating a clean command for VS code that will run catkin clean and then remove the compile_commands.json file
-        {
-			"type": "catkin",
-			"args": [
-				"clean",
-				"--yes"
-			],
-			"problemMatcher": [
-				"$catkin-gcc"
-			],
-			"label": "catkin_clean"
-		},
+		// This is not used atm
 		{
-			"command": "rm ${workspaceFolder}/compile_commands.json",
+			"label": "prerun",
 			"type": "shell",
-			"problemMatcher": [],
-			"group": "build",
-			"label": "catkin: clean",
-			"dependsOn": [
-				"catkin_clean"
-			]
+			"command": "source ./devel/setup.bash && export ROS_MASTER_URI=http://localhost:11311/ "
 		}
-  ]
+  	]
 }
