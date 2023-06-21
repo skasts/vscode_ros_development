@@ -1,0 +1,59 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ROS: Debug single C++ Node (Talker)",
+            "request": "launch",
+            "target": "${workspaceFolder}/src/ros_tutorials/roscpp_tutorials/launch/talker_listener.launch",
+            "launch": [
+                "listener", // Included to not debug listener
+                "rviz",
+                "gz",
+                "gzclient",
+                "gzserver"
+            ],
+            "type": "ros"
+        },
+        {
+            "name": "ROS: Debug Multiple C++ Nodes (Talker and Listener)",
+            "request": "launch",
+            "target": "${workspaceFolder}/src/ros_tutorials/roscpp_tutorials/launch/talker_listener.launch",
+            "launch": [
+                // "talker", // Example: Include this to not debug talker
+                "rviz",
+                "gz",
+                "gzclient",
+                "gzserver"
+            ],
+            "type": "ros"
+        },
+        {
+            "name": "ROS: Debug single Python Node (advanced Publisher)",
+            "request": "launch",
+            "target": "${workspaceFolder}/src/ros_tutorials/rospy_tutorials/009_advanced_publish/advanced_publish.launch",
+            "launch": [
+                "rviz",
+                "gz",
+                "gzclient",
+                "gzserver"
+            ],
+            "type": "ros"
+        },
+        {
+            "name": "ROS: Debug Multiple Python Nodes (Talker and Listener)",
+            "request": "launch",
+            "target": "${workspaceFolder}/src/ros_tutorials/rospy_tutorials/001_talker_listener/talker_listener.launch",
+            "launch": [
+                // "talker", // Example: Include this to not debug talker
+                "rviz",
+                "gz",
+                "gzclient",
+                "gzserver"
+            ],
+            "type": "ros"
+        }
+    ]
+}
