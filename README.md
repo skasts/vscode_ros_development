@@ -1,7 +1,8 @@
 # VSCode ROS1 development
-This repository has an example setup for VSCode to build and debug ROS code to be used in conjunction with the ROS extension for VSCode. See [these videos](https://www.youtube.com/watch?v=PBbEhRf8QjE&list=PL2dJBq8ig-vihvDVw-D5zAYOArTMIX0FA) for more explanation on how to use the SCode ROS extension.
+This repository has an example setup for VSCode to build and debug ROS code to be used in conjunction with the ROS extension for VSCode. See [these videos](https://www.youtube.com/watch?v=PBbEhRf8QjE&list=PL2dJBq8ig-vihvDVw-D5zAYOArTMIX0FA) for more explanation on how to use the VSCode ROS extension.
 
 ## Prerequisits
+- Clone this repository with submodules to run the examples for debugging `git clone --recurse-submodules git@github.com:skasts/vscode_ros_development.git`
 - Install VSCode ROS extension
 - Always source workspace in the terminal where you run `code .`
 
